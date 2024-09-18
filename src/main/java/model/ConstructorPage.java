@@ -7,7 +7,7 @@ public class ConstructorPage {
         return buttonLoginInLK;
     }
     //кнопка Войти в аккаунт
-    private By buttonLoginInLK = By.xpath("//*[@id='root']/div/main/section[2]/div/button");
+    private By buttonLoginInLK = By.xpath(".//button[@class='button_button__33qZ0 button_button_type_primary__1O7Bx button_button_size_large__G21Vg']");
 
     public By getButtonLK() {
         return buttonLK;
@@ -21,65 +21,63 @@ public class ConstructorPage {
     }
 
     //кнопка Конструктор
-    private By buttonConstructor = By.xpath("//*[@id='root']/div/header/nav/ul/li[1]/a");
+    private By buttonConstructor = By.xpath(".//a[@class='AppHeader_header__link__3D_hX AppHeader_header__link_active__1IkJo']");
 
     public By getLabelSite() {
         return labelSite;
     }
 
     //логотип
-    private By labelSite = By.xpath("//*[@id='root']/div/header/nav/div/a");
-    //кнопка профиль
-    private By buttonProfile = By.xpath(".//a[@class='Account_link__2ETsJ text text_type_main-medium text_color_inactive Account_link_active__2opc9']");
+    private By labelSite = By.xpath(".//div[@class='AppHeader_header__logo__2D0X2']/a[@href='/']");
 
     public By getLabelMakeBurger() {
         return labelMakeBurger;
     }
 
-    //заголовос Соберите бургер
-    private By labelMakeBurger = By.xpath("//*[@id='root']/div/main/section[1]/h1");
+    //заголовок Соберите бургер
+    private By labelMakeBurger = By.xpath(".//h1[@class='text text_type_main-large mb-5 mt-10']");
 
     public By getButtonBuns() {
         return buttonBuns;
     }
 
     //кнопка Булки
-    private By buttonBuns = By.xpath("//*[@id='root']/div/main/section[1]/div[1]/div[1]/span");
+    private By buttonBuns = By.xpath(".//span[@class='text text_type_main-default' and text()='Булки']");
 
     public By getLabelBuns() {
         return labelBuns;
     }
 
     //заголовок Булки
-    private By labelBuns = By.xpath("//*[@id='root']/div/main/section[1]/div[2]/h2[1]");
+    private By labelBuns = By.xpath(".//h2[@class='text text_type_main-medium mb-6 mt-10' and text()='Булки']");
 
     public By getButtonFillings() {
         return buttonFillings;
     }
 
     //кнопка Начинки
-    private By buttonFillings = By.xpath("//*[@id='root']/div/main/section[1]/div[1]/div[3]/span");
+    private By buttonFillings = By.xpath(".//span[@class='text text_type_main-default' and text()='Начинки']");
 
     public By getLabelFillings() {
         return labelFillings;
     }
 
     //заголовок Начинки
-    private By labelFillings = By.xpath("//*[@id='root']/div/main/section[1]/div[2]/h2[3]");
+    private By labelFillings = By.xpath(".//h2[@class='text text_type_main-medium mb-6 mt-10' and text()='Начинки']");
 
     public By getButtonSauces() {
         return buttonSauces;
     }
 
     //кнопка Соусы
-    private By buttonSauces = By.xpath("//*[@id='root']/div/main/section[1]/div[1]/div[2]/span");
+    private By buttonSauces = By.xpath(".//span[@class='text text_type_main-default' and text()='Соусы']");
 
     public By getLabelSauces() {
         return labelSauces;
     }
 
     //заголовок Соусы
-    private By labelSauces = By.xpath("//*[@id='root']/div/main/section[1]/div[2]/h2[2]");
+    private By labelSauces = By.xpath(".//h2[@class='text text_type_main-medium mb-6 mt-10' and text()='Соусы']");
 
     public By getButtonMakeOrder() {
         return buttonMakeOrder;

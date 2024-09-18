@@ -16,6 +16,6 @@ public class ProfilePage {
     }
 
     //кнопка выход
-    private By buttonLogOut=By.xpath("//*[@id='root']/div/main/div/nav/ul/li[3]/button");
+    private By buttonLogOut=By.xpath(".//button[@class='Account_button__14Yp3 text text_type_main-medium text_color_inactive']");
 
 }

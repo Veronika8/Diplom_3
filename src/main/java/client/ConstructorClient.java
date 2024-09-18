@@ -10,13 +10,6 @@ import java.time.Duration;
 
 public class ConstructorClient {
 
-    /*public WebDriver getDriver() {
-        return driver;
-    }
-
-    private WebDriver driver;
-    public ConstructorClient(WebDriver driver) { this.driver=driver;}*/
-
     @Step("Клик по кнопке Личный кабинет неавторизованным пользователем")
     public String clickLKInButtonNoAuth(WebDriver driver,By buttonLK, By buttonLogin){
         driver.findElement(buttonLK).click();

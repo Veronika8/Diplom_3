@@ -8,40 +8,40 @@ public class LoginPage {
     }
 
     //ссылка зарегистрироваться
-    private By linkRegister = By.xpath("//*[@id='root']/div/main/div/div/p[1]/a");
+    private By linkRegister = By.xpath(".//a[@class='Auth_link__1fOlj' and @href='/register']");
 
     public By getLinkLogin() {
         return linkLogin;
     }
 
     //ссылка Войти на странице Зарегистрироваться и Восстановить пароль
-    private By linkLogin = By.xpath("//*[@id='root']/div/main/div/div/p/a");
+    private By linkLogin = By.xpath(".//a[@class='Auth_link__1fOlj' and @href='/login']");
 
     public By getLinkRecoverPass() {
         return linkRecoverPass;
     }
 
     //ссылка Восстановить пароль
-    private By linkRecoverPass = By.xpath("//*[@id='root']/div/main/div/div/p[2]/a");
+    private By linkRecoverPass = By.xpath(".//a[@class='Auth_link__1fOlj' and @href='/forgot-password']");
 
     public By getInputEmail() {
         return inputEmail;
     }
 
     //поле email
-    private By inputEmail = By.xpath("//*[@id='root']/div/main/div/form/fieldset[1]/div/div/input");
+    private By inputEmail = By.xpath(".//input[@class='text input__textfield text_type_main-default' and @type='text']");
 
     public By getInputPassword() {
         return inputPassword;
     }
 
     //поле пароль
-    private By inputPassword = By.xpath("//*[@id='root']/div/main/div/form/fieldset[2]/div/div/input");
+    private By inputPassword = By.xpath(".//input[@class='text input__textfield text_type_main-default' and @type='password']");
 
     public By getButtonLogin() {
         return buttonLogin;
     }
 
     //кнопка Войти
-    private By buttonLogin = By.xpath("//*[@id='root']/div/main/div/form/button");
+    private By buttonLogin = By.xpath(".//button[@class='button_button__33qZ0 button_button_type_primary__1O7Bx button_button_size_medium__3zxIa']");
 }

@@ -9,11 +9,6 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import java.time.Duration;
 
 public class LoginClient {
-    /*public WebDriver getDriver() {
-        return driver;
-    }
-    private WebDriver driver;
-    public LoginClient(WebDriver driver) { this.driver=driver;}*/
 
     @Step("клик по ссылке Зарегистрироваться")
     public void clickLinkRegister(WebDriver driver,By linkRegister,By linkLogin){
@@ -35,7 +30,7 @@ public class LoginClient {
         driver.findElement(inputEmail).sendKeys(email);
         driver.findElement(inputPassword).sendKeys(password);
         driver.findElement(buttonLogin).click();
-        new WebDriverWait(driver, Duration.ofSeconds(1))
+        new WebDriverWait(driver, Duration.ofSeconds(3))
                 .until(ExpectedConditions.visibilityOfElementLocated(buttonMakeOrder));
         return driver.findElement(buttonMakeOrder).getText();
     }

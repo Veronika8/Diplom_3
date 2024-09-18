@@ -16,21 +16,21 @@ public class RegisterPage {
     }
 
     //поле Имя
-    private By inputName = By.xpath("//*[@id='root']/div/main/div/form/fieldset[1]/div/div/input");
+    private By inputName = By.xpath(".//fieldset[1]//input[@class='text input__textfield text_type_main-default' and @type='text']");
 
     public By getInputEmail() {
         return inputEmail;
     }
 
     //поле email
-    private By inputEmail = By.xpath("//*[@id='root']/div/main/div/form/fieldset[2]/div/div/input");
+    private By inputEmail = By.xpath(".//fieldset[2]//input[@class='text input__textfield text_type_main-default' and @type='text']");
 
     public By getInputPassword() {
         return inputPassword;
     }
 
     //поле пароль
-    private By inputPassword = By.xpath("//*[@id='root']/div/main/div/form/fieldset[3]/div/div/input");
+    private By inputPassword = By.xpath(".//input[@class='text input__textfield text_type_main-default' and @type='password']");
 
     public By getButtonRegister() {
         return buttonRegister;
@@ -51,6 +51,6 @@ public class RegisterPage {
     }
 
     //ссылка Войти
-    private By linkLogin = By.xpath("//*[@id='root']/div/main/div/div/p/a");
+    private By linkLogin = By.xpath(".//a[@class='Auth_link__1fOlj' and @href='/login']");
 
 }

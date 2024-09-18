@@ -28,6 +28,9 @@ public class RegisterStellerBurgersTest {
     RegisterClient registerClient = new RegisterClient();
     ConstructorClient constructorClient = new ConstructorClient();
 
+    UpdateDataApi updateDataApi= new UpdateDataApi();
+    String accessToken="";
+
     @Test
     public void checkSuccessfulRegister() {
         String text = constructorClient.clickLKInButtonNoAuth(driver,constructorPage.getButtonLoginInLK(),loginPage.getButtonLogin());
@@ -42,10 +45,8 @@ public class RegisterStellerBurgersTest {
         String buttonLoginTextCheck="Зарегистрироваться";
         MatcherAssert.assertThat(buttonLoginTextCheck,containsString(buttonLoginText));
 
-        //удалим тест данные
-        UpdateDataApi updateDataApi = new UpdateDataApi();
-        String accessToken = updateDataApi.sendPostRequestLogin(email,password);
-        updateDataApi.sendDeleteRequestUser(accessToken);
+        //получим токен для удаления данных
+        accessToken = updateDataApi.sendPostRequestLogin(email,password);
     }
 
     @Test
@@ -63,5 +64,6 @@ public class RegisterStellerBurgersTest {
     @After
     public void tearDown() {
         baseTest.tearDown(driver);
+        updateDataApi.sendDeleteRequestUser(accessToken);
     }
 }

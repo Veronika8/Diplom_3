@@ -24,11 +24,15 @@ public class ConstructorStellerBurgersTest {
     LoginClient loginClient = new LoginClient();
     ProfilePage profilePage = new ProfilePage();
 
+    UpdateDataApi updateDataApi= new UpdateDataApi();
+    String accessToken="";
+
     @Test
     public void checkGoInConctructorButtonConctructor() {
         //создадим тест данные
-        UpdateDataApi updateDataApi= new UpdateDataApi();
         updateDataApi.sendPostRequestRegister(email,password,name);
+        //получим токен для удаления данных
+        accessToken = updateDataApi.sendPostRequestLogin(email,password);
 
         //зайдем в аккаунт
         constructorClient.clickButtonLoginInLK(driver,constructorPage.getButtonLoginInLK(),loginPage.getButtonLogin());
@@ -41,17 +45,14 @@ public class ConstructorStellerBurgersTest {
 
         String buttonTextCheck="Соберите бургер";
         MatcherAssert.assertThat(buttonTextCheck,containsString(buttonText));
-
-        //удалим тест данные
-        String accessToken = updateDataApi.sendPostRequestLogin(email,password);
-        updateDataApi.sendDeleteRequestUser(accessToken);
     }
 
     @Test
     public void checkGoInConctructorLabel() {
         //создадим тест данные
-        UpdateDataApi updateDataApi= new UpdateDataApi();
         updateDataApi.sendPostRequestRegister(email,password,name);
+        //получим токен для удаления данных
+        accessToken = updateDataApi.sendPostRequestLogin(email,password);
 
         //зайдем в аккаунт
         constructorClient.clickButtonLoginInLK(driver,constructorPage.getButtonLoginInLK(),loginPage.getButtonLogin());
@@ -64,10 +65,6 @@ public class ConstructorStellerBurgersTest {
 
         String buttonTextCheck="Соберите бургер";
         MatcherAssert.assertThat(buttonTextCheck,containsString(buttonText));
-
-        //удалим тест данные
-        String accessToken = updateDataApi.sendPostRequestLogin(email,password);
-        updateDataApi.sendDeleteRequestUser(accessToken);
     }
 
     @Test
@@ -103,5 +100,6 @@ public class ConstructorStellerBurgersTest {
     @After
     public void tearDown() {
         baseTest.tearDown(driver);
+        updateDataApi.sendDeleteRequestUser(accessToken);
     }
 }

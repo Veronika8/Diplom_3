@@ -26,11 +26,15 @@ public class LogOutStellerBurgersTest {
     ProfilePage profilePage = new ProfilePage();
     ProfileClient profileClient = new ProfileClient();
 
+    UpdateDataApi updateDataApi= new UpdateDataApi();
+    String accessToken="";
+
     @Test
     public void checkLogOut() {
         //создадим тест данные
-        UpdateDataApi updateDataApi= new UpdateDataApi();
         updateDataApi.sendPostRequestRegister(email,password,name);
+        //получим токен для удаления данных
+        accessToken = updateDataApi.sendPostRequestLogin(email,password);
 
         //зайдем в аккаунт
         constructorClient.clickButtonLoginInLK(driver,constructorPage.getButtonLoginInLK(),loginPage.getButtonLogin());
@@ -40,16 +44,13 @@ public class LogOutStellerBurgersTest {
 
         String buttonText=profileClient.clickButtonLogOut(driver,profilePage.getButtonLogOut(),loginPage.getButtonLogin());
 
-        String buttonTextCheck="Войти";
+        String buttonTextCheck="Сохранить";
         MatcherAssert.assertThat(buttonTextCheck,containsString(buttonText));
-
-        //удалим тест данные
-        String accessToken = updateDataApi.sendPostRequestLogin(email,password);
-        updateDataApi.sendDeleteRequestUser(accessToken);
     }
 
     @After
     public void tearDown() {
         baseTest.tearDown(driver);
+        updateDataApi.sendDeleteRequestUser(accessToken);
     }
 }

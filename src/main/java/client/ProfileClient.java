@@ -9,11 +9,6 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import java.time.Duration;
 
 public class ProfileClient {
-    /*public WebDriver getDriver() {
-        return driver;
-    }
-    private WebDriver driver;
-    public ProfileClient(WebDriver driver) { this.driver=driver;}*/
 
     @Step("клик по кнопке Выход")
     public String clickButtonLogOut(WebDriver driver,By buttonLogOut,By buttonLogin) {

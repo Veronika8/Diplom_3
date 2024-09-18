@@ -9,11 +9,6 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import java.time.Duration;
 
 public class RegisterClient {
-   /* public WebDriver getDriver() {
-        return driver;
-    }
-    private WebDriver driver;
-    public RegisterClient(WebDriver driver) { this.driver=driver;}*/
 
     @Step("заполнить форму регистрации")
     public String setRegisterForm(WebDriver driver,boolean error,By inputName, String name, By inputEmail,String email,By inputPassword,

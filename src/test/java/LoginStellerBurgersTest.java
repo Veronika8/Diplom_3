@@ -27,11 +27,15 @@ public class LoginStellerBurgersTest {
     RegisterPage registerPage =new RegisterPage();
     RegisterClient registerClient =new RegisterClient();
 
+    UpdateDataApi updateDataApi= new UpdateDataApi();
+    String accessToken="";
+
     @Test
     public void checkLoginInButtonLoginInLK() {
         //создадим тест данные
-        UpdateDataApi updateDataApi= new UpdateDataApi();
-        String accessToken = updateDataApi.sendPostRequestRegister(email,password,name);
+        updateDataApi.sendPostRequestRegister(email,password,name);
+        //получим токен для удаления данных
+        accessToken = updateDataApi.sendPostRequestLogin(email,password);
 
         constructorClient.clickButtonLoginInLK(driver,constructorPage.getButtonLoginInLK(),loginPage.getButtonLogin());
         String buttonText = loginClient.setLoginForm(driver,loginPage.getInputEmail(),email,loginPage.getInputPassword(),
@@ -39,16 +43,14 @@ public class LoginStellerBurgersTest {
 
         String buttonTextCheck="Оформить заказ";
         MatcherAssert.assertThat(buttonTextCheck,containsString(buttonText));
-
-        //удалим тест данные
-        updateDataApi.sendDeleteRequestUser(accessToken);
     }
 
     @Test
     public void checkLoginInButtonLk() {
         //создадим тест данные
-        UpdateDataApi updateDataApi= new UpdateDataApi();
-        String accessToken = updateDataApi.sendPostRequestRegister(email,password,name);
+        updateDataApi.sendPostRequestRegister(email,password,name);
+        //получим токен для удаления данных
+        accessToken = updateDataApi.sendPostRequestLogin(email,password);
 
         constructorClient.clickLKInButtonNoAuth(driver,constructorPage.getButtonLoginInLK(),loginPage.getButtonLogin());
         String buttonText = loginClient.setLoginForm(driver,loginPage.getInputEmail(),email,loginPage.getInputPassword(),
@@ -56,51 +58,45 @@ public class LoginStellerBurgersTest {
 
         String buttonTextCheck="Оформить заказ";
         MatcherAssert.assertThat(buttonTextCheck,containsString(buttonText));
-
-        //удалим тест данные
-        updateDataApi.sendDeleteRequestUser(accessToken);
     }
 
     @Test
     public void checkLoginInRegPage() {
         //создадим тест данные
-        UpdateDataApi updateDataApi= new UpdateDataApi();
-        String accessToken = updateDataApi.sendPostRequestRegister(email,password,name);
+        updateDataApi.sendPostRequestRegister(email,password,name);
+        //получим токен для удаления данных
+        accessToken = updateDataApi.sendPostRequestLogin(email,password);
 
         constructorClient.clickLKInButtonNoAuth(driver,constructorPage.getButtonLoginInLK(),loginPage.getButtonLogin());
         loginClient.clickLinkRegister(driver,loginPage.getLinkRegister(),registerPage.getLinkLogin());
-        registerClient.clickLinkLogin(driver,loginPage.getLinkRegister(),loginPage.getButtonLogin());
+        registerClient.clickLinkLogin(driver,loginPage.getLinkLogin(),loginPage.getButtonLogin());
         String buttonText = loginClient.setLoginForm(driver,loginPage.getInputEmail(),email,loginPage.getInputPassword(),
                 password, loginPage.getButtonLogin(),constructorPage.getButtonMakeOrder());
 
         String buttonTextCheck="Оформить заказ";
         MatcherAssert.assertThat(buttonTextCheck,containsString(buttonText));
-
-        //удалим тест данные
-        updateDataApi.sendDeleteRequestUser(accessToken);
     }
 
     @Test
     public void checkLoginInRecoverPassPage() {
         //создадим тест данные
-        UpdateDataApi updateDataApi= new UpdateDataApi();
-        String accessToken = updateDataApi.sendPostRequestRegister(email,password,name);
+        updateDataApi.sendPostRequestRegister(email,password,name);
+        //получим токен для удаления данных
+        accessToken = updateDataApi.sendPostRequestLogin(email,password);
 
         constructorClient.clickLKInButtonNoAuth(driver,constructorPage.getButtonLoginInLK(),loginPage.getButtonLogin());
         loginClient.clickLinkRecoverPass(driver,loginPage.getLinkRecoverPass(),loginPage.getLinkLogin());
-        registerClient.clickLinkLogin(driver,loginPage.getLinkRegister(),loginPage.getButtonLogin());
+        registerClient.clickLinkLogin(driver,loginPage.getLinkLogin(),loginPage.getButtonLogin());
         String buttonText = loginClient.setLoginForm(driver,loginPage.getInputEmail(),email,loginPage.getInputPassword(),
                 password, loginPage.getButtonLogin(),constructorPage.getButtonMakeOrder());
 
         String buttonTextCheck="Оформить заказ";
         MatcherAssert.assertThat(buttonTextCheck,containsString(buttonText));
-
-        //удалим тест данные
-        updateDataApi.sendDeleteRequestUser(accessToken);
     }
 
     @After
     public void tearDown() {
         baseTest.tearDown(driver);
+        updateDataApi.sendDeleteRequestUser(accessToken);
     }
 }

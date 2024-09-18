@@ -24,11 +24,15 @@ public class ProfileStellerBurgersTest {
     LoginClient loginClient =new LoginClient();
     ProfilePage profilePage =new ProfilePage();
 
+    UpdateDataApi updateDataApi= new UpdateDataApi();
+    String accessToken="";
+
     @Test
     public void checkGoToProfile() {
         //создадим тест данные
-        UpdateDataApi updateDataApi= new UpdateDataApi();
         updateDataApi.sendPostRequestRegister(email,password,name);
+        //получим токен для удаления данных
+        accessToken = updateDataApi.sendPostRequestLogin(email,password);
 
         //зайдем в аккаунт
         constructorClient.clickButtonLoginInLK(driver,constructorPage.getButtonLoginInLK(),loginPage.getButtonLogin());
@@ -39,14 +43,11 @@ public class ProfileStellerBurgersTest {
 
         String buttonProfileTextCheck="Профиль";
         MatcherAssert.assertThat(buttonProfileTextCheck,containsString(buttonProfileText));
-
-        //удалим тест данные
-        String accessToken = updateDataApi.sendPostRequestLogin(email,password);
-        updateDataApi.sendDeleteRequestUser(accessToken);
     }
 
     @After
     public void tearDown() {
         baseTest.tearDown(driver);
+        updateDataApi.sendDeleteRequestUser(accessToken);
     }
 }
